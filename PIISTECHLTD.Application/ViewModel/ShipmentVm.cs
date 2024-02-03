@@ -17,8 +17,8 @@ public class ShipmentVm:BaseEntity
     public DateTime ShipmentDate { get; set; }
     [Required]
     public decimal ShipmentCost { get; set; }
-    [Required]
-    public ShipmentStatus Status { get; set; }
+    public long StatusId { get; set; }
+    public StatusVm Status { get; set; }
     [Required]
     public string ConsignmentNumber { get; set; }
 }

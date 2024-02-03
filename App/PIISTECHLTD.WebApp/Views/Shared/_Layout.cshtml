@@ -8,13 +8,16 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PIISTECHLTD.WebApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-rPBD3PqeEp82L9SAdn6SW4fCCuWHE0J/DPOVhpxB9DmZZA+QcFf8e2pAUc9M9Zpt" crossorigin="anonymous" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.20.0/font/bootstrap-icons.css">
 </head>
 <body>
     <div class="wrapper">
         <aside id="sidebar">
             <!--content sidebar-->
-            <div class="h-100">
+            <div class="h-100 nav-pills">
                 <div class="sidebar-logo">
                     <a href="#">
                         <i class="bi bi-c-circle"></i>
@@ -22,72 +25,23 @@
                     </a>
                 </div>
                 <ul class="sidebar-nav">
-                    </li>
+                   
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="#" class="nav-link active text-center">
                             <i class="bi bi-grid"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a asp-action="Index" asp-controller="Shipper" class="sidebar-link">
                             <i class="bi bi-hr"></i>
-                            Product
+                            Shipper
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a asp-action="Index" asp-controller="Receiver" class="sidebar-link">
                             <i class="bi bi-list-task"></i>
-                            Order list
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="bi bi-pie-chart"></i>
-                            Analytics
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="bi bi-database-up"></i>
-                            Stock
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="bi bi-backpack4"></i>
-                            Total order
-                        </a>
-                    </li>
-
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="bi bi-person-add"></i>
-                            Team
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="bi bi-chat-square-text"></i>
-                            Message
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="bi bi-clipboard-heart"></i>
-                            Favourite
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="bi bi-gear-fill"></i>
-                            Setting
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="bi bi-box-arrow-left"></i>
-                            Log out
+                            Receiver
                         </a>
                     </li>
                 </ul>
@@ -125,6 +79,11 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- DataTables JavaScript -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Bootstrap 4 Integration JavaScript -->
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
 
     @await RenderSectionAsync("Scripts", required: false)

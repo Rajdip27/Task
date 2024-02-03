@@ -7,8 +7,8 @@
   }
 
   body{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.875rem;
+    /*font-family: 'Montserrat', sans-serif;*/
+    /*font-size: 0.875rem;*/
     opacity: 1;
     overflow-y: scroll;
     margin: 0;
@@ -16,7 +16,7 @@
   a{
     cursor: pointer;
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
+    /*font-family: 'Montserrat', sans-serif;*/
 
   }
   li{
@@ -32,7 +32,7 @@
   #sidebar{
     max-width: 264px;
     min-width: 264px;
-    background:  #081D45;
+    background: #000000;
     transition: all 0.35s ease-in-out;
   }
 
@@ -75,7 +75,7 @@
    min-width: 60px;
   }
   .sidebar-item .sidebar-link i:hover{
-    color:blue;
+    color:#ff0000;
   }
   .sidebar-nav .sidebar-link{
     height: 50px;
@@ -85,7 +85,7 @@
   }
 
   .sidebar-nav .sidebar-link:hover{
-    color: blue;
+    color: #ff0000;
   }
   
   a.sidebar-link{

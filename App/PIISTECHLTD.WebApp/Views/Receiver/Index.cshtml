@@ -1,0 +1,75 @@
+﻿@model IEnumerable<PIISTECHLTD.Application.ViewModel.ReceiverVm>
+
+@{
+    ViewData["Title"] = "Index";
+    int idno = 1;
+}
+<div class="row mt-5">
+    <div class="col-md-12 d-flex">
+        <div class="card card-table flex-fill">
+            <div class="card-header">
+                <h4 class="card-title float-left mt-2">Receiver List</h4>
+                <a asp-action="CreateOrEdit" asp-controller="Receiver" class="btn btn-primary float-right veiwbutton"><i class="fa fa-plus" aria-hidden="true"></i> Create Receiver</a>
+            </div>
+            <div class="card-body m-4">
+                <div class="table-responsive">
+                    <table class="table table-hover table-center" id="receiverTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ReceiverName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ReceiverPhoneNumber)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ReceiverAddress)
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @idno
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ReceiverName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ReceiverPhoneNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ReceiverAddress)
+                                        </td>
+                                        <td>
+                                            <a class=" btn btn-info" asp-action="CreateOrEdit" asp-controller="Receiver" asp-route-id="@item.Id"><i class="fas fa-edit" aria-hidden="true"></i> Edit</a> |
+                                            <a class="delete-button btn btn-danger" asp-action="Delete" asp-controller="Receiver" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                        </td>
+                                    </tr>
+                                    idno += 1;
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $('#receiverTable').DataTable();
+        })
+    </script>
+}

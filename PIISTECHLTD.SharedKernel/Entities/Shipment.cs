@@ -15,8 +15,9 @@ public class Shipment: AuditableEntity
     public DateTime ShipmentDate { get; set; }
     [Required]
     public decimal ShipmentCost { get; set; }
-    [Required]
-    public ShipmentStatus Status { get; set; }
+   
+    public long StatusId { get; set; }
+    public Status Status { get; set; }
     [Required]
     public string ConsignmentNumber { get; set; }
 }
