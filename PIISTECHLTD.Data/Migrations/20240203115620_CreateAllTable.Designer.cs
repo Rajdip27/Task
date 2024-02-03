@@ -12,7 +12,7 @@ using PIISTECHLTD.Data.Persistence;
 namespace PIISTECHLTD.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240203112417_CreateAllTable")]
+    [Migration("20240203115620_CreateAllTable")]
     partial class CreateAllTable
     {
         /// <inheritdoc />
@@ -261,7 +261,7 @@ namespace PIISTECHLTD.Data.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "67f68eaa-7ad6-4dba-b012-c8e87dedad05",
+                            ConcurrencyStamp = "0a37cebf-180c-46b6-aad5-d8475ca9a6a5",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "admin@localhost.com",
@@ -269,9 +269,9 @@ namespace PIISTECHLTD.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELCr+9xE9ZROhJ5H7DHPWWU04w4aYVNY8cCK80k99UdGK+ZJhV6O9Y/STDgp8YYi4w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIjITXfStqBfC6OUsxnyPDxh4OC07BouCOiMxlxuL7AAidL5SKe2EkAThl4PsNV1Ew==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "aa4fb766-609e-49e7-9a54-4a6bf7a61422",
+                            SecurityStamp = "3d61c5d2-8f16-4926-b447-1733ead22ee5",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -279,17 +279,37 @@ namespace PIISTECHLTD.Data.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bb87d247-cbc7-4ec0-85cd-361c50dada81",
+                            ConcurrencyStamp = "b4a0aeec-4fef-4aa1-90b0-5bf66847bc20",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "employee@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
+                            Name = "Raja",
+                            NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
+                            NormalizedUserName = "EMPLOYEE@gmail.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAELWhU6EIIfoD3OrFwC+dZi1ETYYTFHDD2aujolr2QmaOuUH3lAM4bPSZfk3nPRhJDw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "11400b1b-89b0-4b60-8941-2807cd3e14d6",
+                            TwoFactorEnabled = false,
+                            UserName = "employee@localhost.com"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "295d5b1a-55cc-43a1-85d3-d198781e3cbd",
+                            CreatedBy = 0L,
+                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "employee@localhost.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "Hridoy",
                             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
                             NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFDOMjmFW/HtaUtX1T/C2rIgiNdC5YmSJTYkwQ2TI7MWoXXN/ETCYUP8vxDr/Ju1JA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECQYpm33E3AiMAp2pNSKd4OmgY8Cp7sobQz9f/S7xYKoEu0SfYQ/o52/aPqmiFwewA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e99536a2-1487-430e-9e07-1b198c68225a",
+                            SecurityStamp = "a1777b9c-5004-4f2d-93eb-2b3dcc0bf4ad",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         });

@@ -15,6 +15,7 @@ internal class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
         builder.HasData(new AppUser
         {
             Id = "1",
+            Name="Rajdip",
             Email = "admin@localhost.com",
             NormalizedEmail = "ADMIN@LOCALHOST.COM",
             UserName = "admin@localhost.com",
@@ -26,6 +27,7 @@ internal class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
         }, new AppUser
         {
             Id = "2",
+            Name="Raja",
             Email = "employee@localhost.com",
             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
             UserName = "employee@localhost.com",
