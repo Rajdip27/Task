@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PIISTECHLTD.Application.Repository;
 using PIISTECHLTD.Application.ViewModel;
 using PIISTECHLTD.SharedKernel.Entities;
 
 namespace PIISTECHLTD.WebApp.Controllers.Admin;
-
+[Authorize(Roles = "Administrator")]
 public class ShipperController(IShipperRepository shipperRepository, IMapper mapper) : Controller
 {
 

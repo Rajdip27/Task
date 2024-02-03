@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PIISTECHLTD.Application.Repository;
 using PIISTECHLTD.Application.Repositoryp;
 using PIISTECHLTD.Application.ViewModel;
 using PIISTECHLTD.SharedKernel.Entities;
 namespace PIISTECHLTD.WebApp.Controllers.Admin;
-
+[Authorize(Roles = "Administrator")]
 public class ReceiverController(IReceiverRepository receiverRepository, IMapper mapper) : Controller
 {
     [HttpGet]

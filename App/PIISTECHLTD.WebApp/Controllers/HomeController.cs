@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PIISTECHLTD.WebApp.Models;
 using System.Diagnostics;
 
 namespace PIISTECHLTD.WebApp.Controllers
 {
+    [Authorize(Roles = "Administrator,Employee")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

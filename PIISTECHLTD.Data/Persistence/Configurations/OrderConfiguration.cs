@@ -10,5 +10,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
        builder.ToTable(nameof(Order));
        builder.HasKey(x => x.Id);
+        builder.HasOne(x => x.User).WithMany(x => x.Orders).HasForeignKey(x => x.UserId);
     }
 }

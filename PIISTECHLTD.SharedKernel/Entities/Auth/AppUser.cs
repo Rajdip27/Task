@@ -14,4 +14,6 @@ public class AppUser : IdentityUser
     public long? ModifiedBy { get; set; }
 
     public DateTimeOffset? ModifiedDate { get; set; }
+    public ICollection<Order> Orders { get; set; }=new HashSet<Order>(); 
+    public ICollection<Shipment> Shipment { get; set; }=new HashSet<Shipment>();
 }

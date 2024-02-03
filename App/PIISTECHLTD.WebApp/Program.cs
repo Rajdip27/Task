@@ -1,5 +1,21 @@
+using Microsoft.AspNetCore.Identity;
+using PIISTECHLTD.Data.Persistence;
 using PIISTECHLTD.IoC.Configuration;
+using PIISTECHLTD.SharedKernel.Entities.Auth;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddIdentity<AppUser, IdentityRole>(
+        option =>
+        {
+            option.Password.RequiredUniqueChars = 0;
+            option.Password.RequireUppercase = false;
+            option.Password.RequireLowercase = false;
+            option.Password.RequiredLength = 8;
+            option.Password.RequireNonAlphanumeric = false;
+
+        }
+
+        ).AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -24,6 +40,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

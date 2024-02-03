@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PIISTECHLTD.SharedKernel.Common;
 using PIISTECHLTD.SharedKernel.Entities;
+using PIISTECHLTD.SharedKernel.Entities.Auth;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -24,7 +25,9 @@ public class ShipmentVm:BaseEntity
     [DisplayName("Status")]
     public long StatusId { get; set; }
     public StatusVm Status { get; set; }
+    public string UserId { get; set; }
+    public AppUser AppUser { get; set; }
     [Required]
     [DisplayName("Consignment Number")]
-    public string ConsignmentNumber { get; set; }
+    public string ConsignmentNumber { get; set; }= $"CO-{DateTime.Now:yyyyMMdd}-{new Random().Next(10000, 99999)}";
 }

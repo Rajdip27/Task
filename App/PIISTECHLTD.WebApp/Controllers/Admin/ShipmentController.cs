@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PIISTECHLTD.Application.Repository;
 using PIISTECHLTD.Application.Repositoryp;
@@ -6,8 +7,8 @@ using PIISTECHLTD.Application.ViewModel;
 using PIISTECHLTD.SharedKernel.Entities;
 
 namespace PIISTECHLTD.WebApp.Controllers.Admin;
-
-public class ShipmentController(IShipmentRepository shipmentRepository, IStatusRepository statusRepository, IReceiverRepository receiverRepository,IShipperRepository shipperRepository  ,IMapper mapper) : Controller
+[Authorize(Roles = "Administrator")]
+public class ShipmentController(IShipmentRepository shipmentRepository, IStatusRepository statusRepository, IReceiverRepository receiverRepository,IShipperRepository shipperRepository  ,IMapper mapper,IUserRepository userRepository) : Controller
 {
     
 
@@ -20,6 +21,8 @@ public class ShipmentController(IShipmentRepository shipmentRepository, IStatusR
         ViewData["StatusId"] = statusRepository.Dropdown();
         ViewData["ShipperId"] = shipperRepository.Dropdown();
         ViewData["ReceiverId"] = receiverRepository.Dropdown();
+        ViewData["UserId"] = userRepository.Dropdown();
+
         #endregion
         if (id == 0)
             return View(new ShipmentVm());

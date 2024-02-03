@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PIISTECHLTD.Application.Repository;
 using PIISTECHLTD.Application.Repository.Base;
 
 namespace PIISTECHLTD.Application;
@@ -15,7 +16,7 @@ public static class RegisterService
        // services.AddValidatorsFromAssembly(typeof(IApplication).Assembly);
         services.AddScoped(typeof(IBaseRepository<,,>), typeof(BaseRepository<,,>));
         //services.AddTransient<ICityRepository, CityRepository>();
-        //services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+        services.AddTransient<IUserRepository, UserRepository>();
 
 
         services.Scan(scan => scan.FromAssemblyOf<IApplication>()

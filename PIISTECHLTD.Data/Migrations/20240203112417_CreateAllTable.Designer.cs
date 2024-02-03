@@ -12,8 +12,8 @@ using PIISTECHLTD.Data.Persistence;
 namespace PIISTECHLTD.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240203073831_CreateStatusTable")]
-    partial class CreateStatusTable
+    [Migration("20240203112417_CreateAllTable")]
+    partial class CreateAllTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,20 @@ namespace PIISTECHLTD.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -137,6 +151,8 @@ namespace PIISTECHLTD.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -239,6 +255,44 @@ namespace PIISTECHLTD.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "67f68eaa-7ad6-4dba-b012-c8e87dedad05",
+                            CreatedBy = 0L,
+                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "admin@localhost.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@LOCALHOST.COM",
+                            NormalizedUserName = "ADMIN@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAELCr+9xE9ZROhJ5H7DHPWWU04w4aYVNY8cCK80k99UdGK+ZJhV6O9Y/STDgp8YYi4w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "aa4fb766-609e-49e7-9a54-4a6bf7a61422",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@localhost.com"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "bb87d247-cbc7-4ec0-85cd-361c50dada81",
+                            CreatedBy = 0L,
+                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "employee@localhost.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
+                            NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFDOMjmFW/HtaUtX1T/C2rIgiNdC5YmSJTYkwQ2TI7MWoXXN/ETCYUP8vxDr/Ju1JA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e99536a2-1487-430e-9e07-1b198c68225a",
+                            TwoFactorEnabled = false,
+                            UserName = "employee@localhost.com"
+                        });
                 });
 
             modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Order", b =>
@@ -248,6 +302,9 @@ namespace PIISTECHLTD.Data.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -267,7 +324,20 @@ namespace PIISTECHLTD.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("ShipmentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ShipmentId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Order", (string)null);
                 });
@@ -323,6 +393,9 @@ namespace PIISTECHLTD.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ConsignmentNumber")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -343,9 +416,6 @@ namespace PIISTECHLTD.Data.Migrations
                     b.Property<DateTimeOffset?>("ModifiedDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<long?>("OrderId")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("ReceiverId")
                         .HasColumnType("bigint");
 
@@ -361,9 +431,12 @@ namespace PIISTECHLTD.Data.Migrations
                     b.Property<long>("StatusId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("ReceiverId");
 
@@ -450,6 +523,25 @@ namespace PIISTECHLTD.Data.Migrations
                     b.ToTable("Status", (string)null);
                 });
 
+            modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Auth.UserRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<string>");
+
+                    b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "2"
+                        });
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -501,11 +593,24 @@ namespace PIISTECHLTD.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Order", b =>
+                {
+                    b.HasOne("PIISTECHLTD.SharedKernel.Entities.Shipment", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("ShipmentId");
+
+                    b.HasOne("PIISTECHLTD.SharedKernel.Entities.Auth.AppUser", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Shipment", b =>
                 {
-                    b.HasOne("PIISTECHLTD.SharedKernel.Entities.Order", null)
-                        .WithMany("Shipments")
-                        .HasForeignKey("OrderId");
+                    b.HasOne("PIISTECHLTD.SharedKernel.Entities.Auth.AppUser", "AppUser")
+                        .WithMany("Shipment")
+                        .HasForeignKey("AppUserId");
 
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Receiver", "Receiver")
                         .WithMany("Shipment")
@@ -525,6 +630,8 @@ namespace PIISTECHLTD.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("AppUser");
+
                     b.Navigation("Receiver");
 
                     b.Navigation("Shipper");
@@ -532,14 +639,30 @@ namespace PIISTECHLTD.Data.Migrations
                     b.Navigation("Status");
                 });
 
-            modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Order", b =>
+            modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Auth.UserRole", b =>
                 {
-                    b.Navigation("Shipments");
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", null)
+                        .WithOne()
+                        .HasForeignKey("PIISTECHLTD.SharedKernel.Entities.Auth.UserRole", "UserId", "RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Auth.AppUser", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("Shipment");
                 });
 
             modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Receiver", b =>
                 {
                     b.Navigation("Shipment");
+                });
+
+            modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Shipment", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Shipper", b =>

@@ -21,7 +21,7 @@
                 <div class="sidebar-logo">
                     <a href="#">
                         <i class="bi bi-c-circle"></i>
-                        CodingLab
+                        PIISTECH LTD
                     </a>
                 </div>
                 <ul class="sidebar-nav">
@@ -32,30 +32,53 @@
                             Dashboard
                         </a>
                     </li>
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <!-- Display these navigation items only for users with the "Administrator" role -->
+                        <li class="sidebar-item">
+                            <a asp-action="Index" asp-controller="Shipper" class="sidebar-link">
+                                <i class="bi bi-hr"></i>
+                                Shipper
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a asp-action="Index" asp-controller="Receiver" class="sidebar-link">
+                                <i class="bi bi-list-task"></i>
+                                Receiver
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a asp-action="Index" asp-controller="Status" class="sidebar-link">
+                                <i class="bi bi-list-task"></i>
+                                Status
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a asp-action="Index" asp-controller="Shipment" class="sidebar-link">
+                                <i class="bi bi-list-task"></i>
+                                Shipment
+                            </a>
+                        </li>
+                    }
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <!-- Display this navigation item only for users with the "User" role -->
+                        <li class="sidebar-item">
+                            <a asp-action="Index" asp-controller="Order" class="sidebar-link">
+                                <i class="bi bi-cart"></i>
+                                Order
+                            </a>
+                        </li>
+                    }
+
                     <li class="sidebar-item">
-                        <a asp-action="Index" asp-controller="Shipper" class="sidebar-link">
-                            <i class="bi bi-hr"></i>
-                            Shipper
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a asp-action="Index" asp-controller="Receiver" class="sidebar-link">
+                        <a asp-action="Logout" asp-controller="Account" class="sidebar-link">
                             <i class="bi bi-list-task"></i>
-                            Receiver
+                           Sing Out
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a asp-action="Index" asp-controller="Status" class="sidebar-link">
-                            <i class="bi bi-list-task"></i>
-                            Status
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a asp-action="Index" asp-controller="Shipment" class="sidebar-link">
-                            <i class="bi bi-list-task"></i>
-                            Shipment
-                        </a>
-                    </li>
+
                 </ul>
             </div>
         </aside>
