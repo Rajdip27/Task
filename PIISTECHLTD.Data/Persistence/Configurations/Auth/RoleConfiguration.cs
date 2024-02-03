@@ -19,8 +19,8 @@ public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
         }, new IdentityRole
         {
             Id = "2",
-            Name = "Employee",
-            NormalizedName = "EMPLOYEE",
+            Name = "User",
+            NormalizedName = "USER",
         });
     }
 }

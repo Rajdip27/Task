@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace PIISTECHLTD.WebApp.Controllers
 {
-    [Authorize(Roles = "Administrator,Employee")]
+    [Authorize(Roles = "Administrator,User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

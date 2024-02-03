@@ -1,3 +1,5 @@
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Identity;
 using PIISTECHLTD.Data.Persistence;
 using PIISTECHLTD.IoC.Configuration;
@@ -16,6 +18,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
 
         ).AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

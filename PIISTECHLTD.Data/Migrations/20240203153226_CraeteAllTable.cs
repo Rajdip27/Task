@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PIISTECHLTD.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateAllTable : Migration
+    public partial class CraeteAllTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -223,6 +223,32 @@ namespace PIISTECHLTD.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    ModifiedBy = table.Column<long>(type: "bigint", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Order_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Shipment",
                 columns: table => new
                 {
@@ -300,45 +326,13 @@ namespace PIISTECHLTD.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Order",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ShipmentId = table.Column<long>(type: "bigint", nullable: true),
-                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
-                    ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    ModifiedBy = table.Column<long>(type: "bigint", nullable: true),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Order", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Order_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Order_Shipment_ShipmentId",
-                        column: x => x.ShipmentId,
-                        principalTable: "Shipment",
-                        principalColumn: "Id");
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
                     { "1", null, "Administrator", "ADMINISTRATOR" },
-                    { "2", null, "Employee", "EMPLOYEE" }
+                    { "2", null, "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -346,9 +340,8 @@ namespace PIISTECHLTD.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "CreatedBy", "CreatedDate", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "ModifiedBy", "ModifiedDate", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, null, "0a37cebf-180c-46b6-aad5-d8475ca9a6a5", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, false, null, null, null, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEIjITXfStqBfC6OUsxnyPDxh4OC07BouCOiMxlxuL7AAidL5SKe2EkAThl4PsNV1Ew==", null, false, "3d61c5d2-8f16-4926-b447-1733ead22ee5", false, "admin@localhost.com" },
-                    { "2", 0, null, "b4a0aeec-4fef-4aa1-90b0-5bf66847bc20", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, false, null, null, null, "Raja", "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@gmail.COM", "AQAAAAIAAYagAAAAELWhU6EIIfoD3OrFwC+dZi1ETYYTFHDD2aujolr2QmaOuUH3lAM4bPSZfk3nPRhJDw==", null, false, "11400b1b-89b0-4b60-8941-2807cd3e14d6", false, "employee@localhost.com" },
-                    { "3", 0, null, "295d5b1a-55cc-43a1-85d3-d198781e3cbd", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, false, null, null, null, "Hridoy", "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAECQYpm33E3AiMAp2pNSKd4OmgY8Cp7sobQz9f/S7xYKoEu0SfYQ/o52/aPqmiFwewA==", null, false, "a1777b9c-5004-4f2d-93eb-2b3dcc0bf4ad", false, "employee@localhost.com" }
+                    { "1", 0, "Dhaka,Dhanmondi", "bad92c68-8713-4508-b2df-ce67259578f8", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, false, null, null, null, "Rajdip", "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEN09Q76f6KdNF6OA54KmXKfxGdNiC+ylipEf2G9kA7R+c+VWWqF3ihAMAIDHNKdE7w==", "01701734627", false, "27354979-4844-45c5-8b71-8a2ee803361f", false, "admin@localhost.com" },
+                    { "2", 0, "Dhaka,Dhanmondi", "cc3d2ad0-e1c8-497c-9d72-878140f5f004", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, false, null, null, null, "Raja", "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAEIKemKY39WT4qJ9xZpLU4ydvRTaHm9LzCrZsGvZQ+q8dKPBVJ8f08L7vBs/mKyyRZg==", "01701734627", false, "75b22490-df18-4d2c-85d0-b53b3e5eb205", false, "employee@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -409,11 +402,6 @@ namespace PIISTECHLTD.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_ShipmentId",
-                table: "Order",
-                column: "ShipmentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Order_UserId",
                 table: "Order",
                 column: "UserId");
@@ -463,13 +451,10 @@ namespace PIISTECHLTD.Data.Migrations
                 name: "Order");
 
             migrationBuilder.DropTable(
-                name: "UserRoles");
-
-            migrationBuilder.DropTable(
                 name: "Shipment");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
+                name: "UserRoles");
 
             migrationBuilder.DropTable(
                 name: "Receiver");
@@ -479,6 +464,9 @@ namespace PIISTECHLTD.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Status");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -1,9 +1,20 @@
-﻿namespace PIISTECHLTD.Application.ViewModel.ShowDataViewModel;
+﻿using System.ComponentModel;
 
-public record OrderTracking(string ConsignmentNumber,
-    string Status, 
-    decimal ShipmentCost, 
-    DateTime ShipmentDate,
-    string ShipperName
-);
+namespace PIISTECHLTD.Application.ViewModel.ShowDataViewModel;
+
+public class OrderTracking
+{
+    [DisplayName("Status Name")]
+    public string Name { get; set; }
+    [DisplayName("Shipment Cost")]
+    public decimal ShipmentCost { get; set; }
+    [DisplayName("Shipment Date")]
+    public string ShipmentDate { get; set; }
+    [DisplayName("Consignment Number")]
+    public string ConsignmentNumber { get; set; }
+    [DisplayName("Shipper Name")]
+    public string ShipperName { get; set; }
+}
+
+
 

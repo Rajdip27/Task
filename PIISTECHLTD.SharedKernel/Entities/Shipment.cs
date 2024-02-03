@@ -21,7 +21,7 @@ public class Shipment: AuditableEntity
     public Status Status { get; set; }
     [Required]
     public string ConsignmentNumber { get; set; }
-    public ICollection<Order> Orders { get; set; }
+    
 
     public string UserId { get; set; }
     public AppUser AppUser { get; set; }

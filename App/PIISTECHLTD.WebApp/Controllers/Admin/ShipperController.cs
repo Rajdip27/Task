@@ -1,13 +1,17 @@
-﻿using AutoMapper;
+﻿using AspNetCore.Reporting;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using PIISTECHLTD.Application.Repository;
 using PIISTECHLTD.Application.ViewModel;
 using PIISTECHLTD.SharedKernel.Entities;
+using System.Net.Mime;
+using System.Text;
 
 namespace PIISTECHLTD.WebApp.Controllers.Admin;
 [Authorize(Roles = "Administrator")]
-public class ShipperController(IShipperRepository shipperRepository, IMapper mapper) : Controller
+public class ShipperController(IShipperRepository shipperRepository, IMapper mapper, IWebHostEnvironment webHostEnvironment) : Controller
 {
 
     [HttpGet]
@@ -52,6 +56,28 @@ public class ShipperController(IShipperRepository shipperRepository, IMapper map
             return RedirectToAction(nameof(Index));
         }
         return RedirectToAction(nameof(Index));
+    }
+    [HttpGet]
+    public async Task<ActionResult> Print()
+    {
+        var data = await shipperRepository.GetAllAsync();
+        string reportName = "TestReport.pdf";
+        string reportPath = Path.Combine(webHostEnvironment.ContentRootPath, "Reports", "ShipperReport.rdlc");
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        Encoding.GetEncoding("utf-8");
+        LocalReport report = new LocalReport(reportPath);
+        report.AddDataSource("ShipperDbSet", data.ToList());
+
+        Dictionary<string, string> parameters = new Dictionary<string, string>();
+        var result = report.Execute(RenderType.Pdf, 2, parameters);
+        var content = result.MainStream.ToArray();
+        var contentDisposition = new ContentDisposition
+        {
+            FileName = reportName,
+            Inline = true,
+        };
+        Response.Headers.Add("Content-Disposition", contentDisposition.ToString());
+        return File(content, MediaTypeNames.Application.Pdf);
     }
 
 

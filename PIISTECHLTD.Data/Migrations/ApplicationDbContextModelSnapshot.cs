@@ -58,8 +58,8 @@ namespace PIISTECHLTD.Data.Migrations
                         new
                         {
                             Id = "2",
-                            Name = "Employee",
-                            NormalizedName = "EMPLOYEE"
+                            Name = "User",
+                            NormalizedName = "USER"
                         });
                 });
 
@@ -258,17 +258,20 @@ namespace PIISTECHLTD.Data.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0a37cebf-180c-46b6-aad5-d8475ca9a6a5",
+                            Address = "Dhaka,Dhanmondi",
+                            ConcurrencyStamp = "bad92c68-8713-4508-b2df-ce67259578f8",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
+                            Name = "Rajdip",
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIjITXfStqBfC6OUsxnyPDxh4OC07BouCOiMxlxuL7AAidL5SKe2EkAThl4PsNV1Ew==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEN09Q76f6KdNF6OA54KmXKfxGdNiC+ylipEf2G9kA7R+c+VWWqF3ihAMAIDHNKdE7w==",
+                            PhoneNumber = "01701734627",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3d61c5d2-8f16-4926-b447-1733ead22ee5",
+                            SecurityStamp = "27354979-4844-45c5-8b71-8a2ee803361f",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -276,7 +279,8 @@ namespace PIISTECHLTD.Data.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b4a0aeec-4fef-4aa1-90b0-5bf66847bc20",
+                            Address = "Dhaka,Dhanmondi",
+                            ConcurrencyStamp = "cc3d2ad0-e1c8-497c-9d72-878140f5f004",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "employee@localhost.com",
@@ -284,29 +288,11 @@ namespace PIISTECHLTD.Data.Migrations
                             LockoutEnabled = false,
                             Name = "Raja",
                             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
-                            NormalizedUserName = "EMPLOYEE@gmail.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELWhU6EIIfoD3OrFwC+dZi1ETYYTFHDD2aujolr2QmaOuUH3lAM4bPSZfk3nPRhJDw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "11400b1b-89b0-4b60-8941-2807cd3e14d6",
-                            TwoFactorEnabled = false,
-                            UserName = "employee@localhost.com"
-                        },
-                        new
-                        {
-                            Id = "3",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "295d5b1a-55cc-43a1-85d3-d198781e3cbd",
-                            CreatedBy = 0L,
-                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Email = "employee@localhost.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            Name = "Hridoy",
-                            NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
                             NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECQYpm33E3AiMAp2pNSKd4OmgY8Cp7sobQz9f/S7xYKoEu0SfYQ/o52/aPqmiFwewA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIKemKY39WT4qJ9xZpLU4ydvRTaHm9LzCrZsGvZQ+q8dKPBVJ8f08L7vBs/mKyyRZg==",
+                            PhoneNumber = "01701734627",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a1777b9c-5004-4f2d-93eb-2b3dcc0bf4ad",
+                            SecurityStamp = "75b22490-df18-4d2c-85d0-b53b3e5eb205",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         });
@@ -344,15 +330,10 @@ namespace PIISTECHLTD.Data.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("ShipmentId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ShipmentId");
 
                     b.HasIndex("UserId");
 
@@ -612,10 +593,6 @@ namespace PIISTECHLTD.Data.Migrations
 
             modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Order", b =>
                 {
-                    b.HasOne("PIISTECHLTD.SharedKernel.Entities.Shipment", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("ShipmentId");
-
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Auth.AppUser", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId");
@@ -675,11 +652,6 @@ namespace PIISTECHLTD.Data.Migrations
             modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Receiver", b =>
                 {
                     b.Navigation("Shipment");
-                });
-
-            modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Shipment", b =>
-                {
-                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Shipper", b =>

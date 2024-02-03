@@ -16,6 +16,8 @@ internal class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
         {
             Id = "1",
             Name="Rajdip",
+            PhoneNumber="01701734627",
+            Address="Dhaka,Dhanmondi",
             Email = "admin@localhost.com",
             NormalizedEmail = "ADMIN@LOCALHOST.COM",
             UserName = "admin@localhost.com",
@@ -28,6 +30,8 @@ internal class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
         {
             Id = "2",
             Name="Raja",
+            PhoneNumber = "01701734627",
+            Address = "Dhaka,Dhanmondi",
             Email = "employee@localhost.com",
             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
             UserName = "employee@localhost.com",

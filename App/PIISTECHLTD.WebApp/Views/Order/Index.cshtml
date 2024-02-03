@@ -1,0 +1,79 @@
+﻿@model PIISTECHLTD.Application.ViewModel.ShowDataViewModel.OrderTracking
+
+@{
+    ViewData["Title"] = "Index";
+    
+}
+<div class="row mt-5">
+    <div class="col-md-12 d-flex">
+        <div class="card card-table flex-fill">
+            <div class="card-header">
+                <h4 class="card-title float-left mt-2">Order Tracking</h4>
+                <div class="text-end">
+                    <a asp-action="Print" asp-controller="Order" class="btn btn-sm btn-success">
+                        <i class="fa fa-print" aria-hidden="true"></i> Print
+                    </a>
+                </div>
+               
+            </div>
+            <div class="card-body m-4">
+                <div class="table-responsive">
+                    <table class="table table-hover table-center" id="receiverTable">
+                        <thead>
+                            <tr>
+                               
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ConsignmentNumber)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ShipmentCost)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ShipmentDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ShipperName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            <tr>
+
+                                <td>
+                                    @Model.ConsignmentNumber
+                                </td>
+                                <td>
+                                    @Model.ShipmentCost
+
+                                </td>
+                                <td>
+                                    @Model.ShipmentDate
+
+                                </td>
+                                <td>
+                                    @Model.ShipperName
+
+                                </td>
+                                <td>
+                                    @Model.Name
+
+                                </td>
+
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

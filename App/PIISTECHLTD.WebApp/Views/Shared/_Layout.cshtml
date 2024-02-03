@@ -60,14 +60,26 @@
                                 Shipment
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a asp-action="print" asp-controller="account" class="sidebar-link">
+                                <i class="bi bi-list-task"></i>
+                                CustomerList
+                            </a>
+                        </li>
                     }
-                    @if (User.IsInRole("Employee"))
+                    @if (User.IsInRole("User"))
                     {
                         <!-- Display this navigation item only for users with the "User" role -->
                         <li class="sidebar-item">
-                            <a asp-action="Index" asp-controller="Order" class="sidebar-link">
+                            <a asp-action="CreateOrEdit" asp-controller="Order" class="sidebar-link">
                                 <i class="bi bi-cart"></i>
                                 Order
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a asp-action="Index" asp-controller="Order" class="sidebar-link">
+                                <i class="bi bi-cart"></i>
+                                Order Tracking
                             </a>
                         </li>
                     }

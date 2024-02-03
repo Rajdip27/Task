@@ -12,10 +12,10 @@ public class ShipperVm:BaseEntity
     [DisplayName("Shipper Name ")]
     public string ShipperName { get; set; }
     [Required]
-    [DisplayName("Address: ")]
+    [DisplayName("Address")]
     public string ShipperAddress { get; set; }
     [Required]
-    [DisplayName("Phone Number: ")]
+    [DisplayName("Phone Number")]
     public string ShipperPhoneNumber { get; set; }
     public ICollection<ShipmentVm> Shipment { get; set; } = new HashSet<ShipmentVm>();
 }
