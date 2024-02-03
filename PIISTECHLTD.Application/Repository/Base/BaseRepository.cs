@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using PIISTECHLTD.SharedKernel.Common;
 using PIISTECHLTD.SharedKernel.Extensions;
 using PIISTECHLTD.SharedKernel.Extensions.Dropdown;
@@ -234,5 +235,17 @@ public class BaseRepository<TEntity, TModel, T> : IBaseRepository<TEntity, TMode
             return await query.AnyAsync(predicate);
         else
             return await query.AnyAsync();
+    }
+
+    public async Task<List<TModel>> GetAllAsync(params Expression<Func<TEntity, object>>[] includes)
+    {
+        var entities = await includes
+        .Aggregate(
+            _context.Set<TEntity>().Where(e => !e.IsDelete), 
+            (current, include) => current.Include(include)
+        )
+        .ToListAsync().ConfigureAwait(true);
+
+        return _mapper.Map<List<TModel>>(entities);
     }
 }

@@ -1,4 +1,5 @@
-﻿using PIISTECHLTD.SharedKernel.Common;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using PIISTECHLTD.SharedKernel.Common;
 using PIISTECHLTD.SharedKernel.Extensions.Dropdown;
 using PIISTECHLTD.SharedKernel.Extensions.Pagging;
 using System.Linq.Expressions;
@@ -55,6 +56,7 @@ public interface IBaseRepository<TEntity, TModel, T>
     #region GetAllAsync
 
     Task<List<TModel>> GetAllAsync();
+    Task<List<TModel>> GetAllAsync(params Expression<Func<TEntity, object>>[] includes);
     Task<List<TModel>> GetAllAsync(Expression<Func<TEntity, bool>> predicate);
     Task<List<TModel>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] include);
     Task<List<TModel>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy);

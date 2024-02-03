@@ -9,7 +9,7 @@ namespace PIISTECHLTD.Application.ViewModel;
 public class ReceiverVm:BaseEntity
 {
     [Required]
-    [DisplayName("Name")]
+    [DisplayName("Receiver Name")]
     public string ReceiverName { get; set; }
     [Required]
     [DisplayName("Address")]

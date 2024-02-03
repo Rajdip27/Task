@@ -9,7 +9,7 @@ namespace PIISTECHLTD.Application.ViewModel;
 public class ShipperVm:BaseEntity
 {
     [Required]
-    [DisplayName("Name: ")]
+    [DisplayName("Shipper Name ")]
     public string ShipperName { get; set; }
     [Required]
     [DisplayName("Address: ")]
