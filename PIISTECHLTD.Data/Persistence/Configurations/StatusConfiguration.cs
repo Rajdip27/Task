@@ -11,5 +11,20 @@ public class StatusConfiguration : IEntityTypeConfiguration<Status>
         builder.ToTable(nameof(Status));
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Name).HasMaxLength(70).IsRequired(true);
+        builder.HasData(new Status
+        {
+            Id = 1,
+            Name = "Pending"
+        },
+         new
+         {
+             Id = 2,
+             Name = "Approved"
+         }, new
+         {
+             Id = 3,
+             Name = "Rejected"
+         }
+        );
     }
 }
