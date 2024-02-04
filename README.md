@@ -17,7 +17,7 @@ This is a web application for PIISTECH LTD. It includes features for both admini
 - Visual Studio (optional) or any code editor of your choice
 
 ### Installation
-1. Clone the repository: `git clone https://github.com/your/repository.git`
+1. Clone the repository: `[git clone https://github.com/your/repository.git](https://github.com/Rajdip27/Task)`
 2. Navigate to the project folder: `cd PIISTECHLTD.WebApp`
 3. Run the application: `dotnet run`
 
