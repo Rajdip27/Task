@@ -36,6 +36,6 @@ This is a web application for PIISTECH LTD. It includes features for both admini
 - Track order status.
 - Logout option available.
 
-## Folder Structure
+
 
 
