@@ -15,10 +15,11 @@ public class ShipperConfiguration : IEntityTypeConfiguration<Shipper>
         builder.Property(x=>x.ShipperPhoneNumber).HasMaxLength(20).IsRequired();
         builder.HasData(new Shipper
         {
-            ShipperName="AbC.Ltd",
-            ShipperAddress="Dhaka",
-            ShipperPhoneNumber="01701734627"
+            Id = 1,
+            ShipperName = "AbC.Ltd",
+            ShipperAddress = "Dhaka",
+            ShipperPhoneNumber = "01701734627"
 
-        });
+        }) ;
     }
 }

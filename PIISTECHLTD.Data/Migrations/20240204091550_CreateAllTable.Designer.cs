@@ -12,8 +12,8 @@ using PIISTECHLTD.Data.Persistence;
 namespace PIISTECHLTD.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240203153226_CraeteAllTable")]
-    partial class CraeteAllTable
+    [Migration("20240204091550_CreateAllTable")]
+    partial class CreateAllTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -262,7 +262,7 @@ namespace PIISTECHLTD.Data.Migrations
                             Id = "1",
                             AccessFailedCount = 0,
                             Address = "Dhaka,Dhanmondi",
-                            ConcurrencyStamp = "bad92c68-8713-4508-b2df-ce67259578f8",
+                            ConcurrencyStamp = "5cac163d-5632-4b2d-8ddb-b39ec0aa0adb",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "admin@localhost.com",
@@ -271,10 +271,10 @@ namespace PIISTECHLTD.Data.Migrations
                             Name = "Rajdip",
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN09Q76f6KdNF6OA54KmXKfxGdNiC+ylipEf2G9kA7R+c+VWWqF3ihAMAIDHNKdE7w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG7XeJPXi+sHek8sbr0jS6upRI9eFSNy1cTgb58ntbJTK+P05zNe+NuLE3a9SBA7dA==",
                             PhoneNumber = "01701734627",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "27354979-4844-45c5-8b71-8a2ee803361f",
+                            SecurityStamp = "d84c2992-2533-4341-811f-6110a4949db1",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -283,7 +283,7 @@ namespace PIISTECHLTD.Data.Migrations
                             Id = "2",
                             AccessFailedCount = 0,
                             Address = "Dhaka,Dhanmondi",
-                            ConcurrencyStamp = "cc3d2ad0-e1c8-497c-9d72-878140f5f004",
+                            ConcurrencyStamp = "e4915650-d701-46a4-8d4c-a351367fe583",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "employee@localhost.com",
@@ -292,10 +292,10 @@ namespace PIISTECHLTD.Data.Migrations
                             Name = "Raja",
                             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
                             NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIKemKY39WT4qJ9xZpLU4ydvRTaHm9LzCrZsGvZQ+q8dKPBVJ8f08L7vBs/mKyyRZg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKJdz9rwtLdM21z6NN3hWpuUap6fxGUQHOzh2JtJ3ddaK3m67i2Ns244I4PWZpdn7Q==",
                             PhoneNumber = "01701734627",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "75b22490-df18-4d2c-85d0-b53b3e5eb205",
+                            SecurityStamp = "d0875958-665e-47c8-bf4d-f0ef0e49de2a",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         });
@@ -384,6 +384,18 @@ namespace PIISTECHLTD.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Receiver", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedBy = 0L,
+                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            IsDelete = false,
+                            ReceiverAddress = "Dhaka",
+                            ReceiverName = "AbC.Ltd",
+                            ReceiverPhoneNumber = "01701734627"
+                        });
                 });
 
             modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Shipment", b =>
@@ -489,6 +501,18 @@ namespace PIISTECHLTD.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Shipper", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedBy = 0L,
+                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            IsDelete = false,
+                            ShipperAddress = "Dhaka",
+                            ShipperName = "AbC.Ltd",
+                            ShipperPhoneNumber = "01701734627"
+                        });
                 });
 
             modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Status", b =>
@@ -522,6 +546,16 @@ namespace PIISTECHLTD.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Status", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedBy = 0L,
+                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            IsDelete = false,
+                            Name = "Pending"
+                        });
                 });
 
             modelBuilder.Entity("PIISTECHLTD.SharedKernel.Entities.Auth.UserRole", b =>
@@ -548,7 +582,7 @@ namespace PIISTECHLTD.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -557,7 +591,7 @@ namespace PIISTECHLTD.Data.Migrations
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Auth.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -566,7 +600,7 @@ namespace PIISTECHLTD.Data.Migrations
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Auth.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -575,13 +609,13 @@ namespace PIISTECHLTD.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Auth.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -590,7 +624,7 @@ namespace PIISTECHLTD.Data.Migrations
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Auth.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -598,7 +632,8 @@ namespace PIISTECHLTD.Data.Migrations
                 {
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Auth.AppUser", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("User");
                 });
@@ -607,24 +642,25 @@ namespace PIISTECHLTD.Data.Migrations
                 {
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Auth.AppUser", "AppUser")
                         .WithMany("Shipment")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Receiver", "Receiver")
                         .WithMany("Shipment")
                         .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Shipper", "Shipper")
                         .WithMany("Shipment")
                         .HasForeignKey("ShipperId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("PIISTECHLTD.SharedKernel.Entities.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AppUser");

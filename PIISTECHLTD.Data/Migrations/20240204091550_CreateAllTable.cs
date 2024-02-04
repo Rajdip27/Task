@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PIISTECHLTD.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class CraeteAllTable : Migration
+    public partial class CreateAllTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -245,7 +245,8 @@ namespace PIISTECHLTD.Data.Migrations
                         name: "FK_Order_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -275,7 +276,8 @@ namespace PIISTECHLTD.Data.Migrations
                         name: "FK_Shipment_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Shipment_Receiver_ReceiverId",
                         column: x => x.ReceiverId,
@@ -317,7 +319,7 @@ namespace PIISTECHLTD.Data.Migrations
                         columns: x => new { x.UserId, x.RoleId },
                         principalTable: "AspNetUserRoles",
                         principalColumns: new[] { "UserId", "RoleId" },
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -340,9 +342,24 @@ namespace PIISTECHLTD.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "CreatedBy", "CreatedDate", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "ModifiedBy", "ModifiedDate", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "Dhaka,Dhanmondi", "bad92c68-8713-4508-b2df-ce67259578f8", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, false, null, null, null, "Rajdip", "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEN09Q76f6KdNF6OA54KmXKfxGdNiC+ylipEf2G9kA7R+c+VWWqF3ihAMAIDHNKdE7w==", "01701734627", false, "27354979-4844-45c5-8b71-8a2ee803361f", false, "admin@localhost.com" },
-                    { "2", 0, "Dhaka,Dhanmondi", "cc3d2ad0-e1c8-497c-9d72-878140f5f004", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, false, null, null, null, "Raja", "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAEIKemKY39WT4qJ9xZpLU4ydvRTaHm9LzCrZsGvZQ+q8dKPBVJ8f08L7vBs/mKyyRZg==", "01701734627", false, "75b22490-df18-4d2c-85d0-b53b3e5eb205", false, "employee@localhost.com" }
+                    { "1", 0, "Dhaka,Dhanmondi", "5cac163d-5632-4b2d-8ddb-b39ec0aa0adb", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, false, null, null, null, "Rajdip", "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEG7XeJPXi+sHek8sbr0jS6upRI9eFSNy1cTgb58ntbJTK+P05zNe+NuLE3a9SBA7dA==", "01701734627", false, "d84c2992-2533-4341-811f-6110a4949db1", false, "admin@localhost.com" },
+                    { "2", 0, "Dhaka,Dhanmondi", "e4915650-d701-46a4-8d4c-a351367fe583", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, false, null, null, null, "Raja", "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAEKJdz9rwtLdM21z6NN3hWpuUap6fxGUQHOzh2JtJ3ddaK3m67i2Ns244I4PWZpdn7Q==", "01701734627", false, "d0875958-665e-47c8-bf4d-f0ef0e49de2a", false, "employee@localhost.com" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Receiver",
+                columns: new[] { "Id", "CreatedBy", "CreatedDate", "IsDelete", "ModifiedBy", "ModifiedDate", "ReceiverAddress", "ReceiverName", "ReceiverPhoneNumber" },
+                values: new object[] { 1L, 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), false, null, null, "Dhaka", "AbC.Ltd", "01701734627" });
+
+            migrationBuilder.InsertData(
+                table: "Shipper",
+                columns: new[] { "Id", "CreatedBy", "CreatedDate", "IsDelete", "ModifiedBy", "ModifiedDate", "ShipperAddress", "ShipperName", "ShipperPhoneNumber" },
+                values: new object[] { 1L, 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), false, null, null, "Dhaka", "AbC.Ltd", "01701734627" });
+
+            migrationBuilder.InsertData(
+                table: "Status",
+                columns: new[] { "Id", "CreatedBy", "CreatedDate", "IsDelete", "ModifiedBy", "ModifiedDate", "Name" },
+                values: new object[] { 1L, 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), false, null, null, "Pending" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

@@ -24,6 +24,10 @@ public class OrderController(IOrderRepository orderRepository,IMapper mapper, IW
             if (userId is not null)
             {
                 var data = await orderRepository.GetData(userId);
+                if (data == null)
+                {
+                    return NotFound();
+                }
                 return View(data);
             }
         }

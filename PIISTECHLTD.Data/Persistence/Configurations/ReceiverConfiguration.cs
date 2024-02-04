@@ -13,5 +13,13 @@ public class ReceiverConfiguration : IEntityTypeConfiguration<Receiver>
         builder.Property(x=>x.ReceiverAddress).HasMaxLength(200).IsRequired();
         builder.Property(x=>x.ReceiverName).HasMaxLength(200).IsRequired();
         builder.Property(x=>x.ReceiverPhoneNumber).HasMaxLength(200).IsRequired();
+        builder.HasData(new Receiver
+        {
+            Id = 1,
+            ReceiverName = "AbC.Ltd",
+            ReceiverAddress = "Dhaka",
+            ReceiverPhoneNumber = "01701734627"
+
+        });
     }
 }

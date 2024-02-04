@@ -8,7 +8,7 @@ public class OrderTracking
     public string Name { get; set; }
     [DisplayName("Shipment Cost")]
     public decimal ShipmentCost { get; set; }
-    [DisplayName("Shipment Date")]
+    [DisplayName("Pick Up Date")]
     public string ShipmentDate { get; set; }
     [DisplayName("Consignment Number")]
     public string ConsignmentNumber { get; set; }
